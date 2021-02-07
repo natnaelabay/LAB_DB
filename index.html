@@ -58,6 +58,14 @@
                 </div>
                 <div class="card-action">
                     <h5 id="task-title">List of Tasks</h5>
+                    <a class='dropdown-button dropdown-trigger btn blue' href='#' data-target="dropdown1">Sort Tasks
+                    </a>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content'>
+                        <li><a href="#!" class="black-text asc">Ascending</a></li>
+                        <li><a href="#!" class="black-text dsc">Descending</a></li>
+                    </ul>
                     <div class="input-field col s12">
                         <input type="search" name="filter" id="filter">
                         <label for="filter">Search</label>
@@ -83,7 +91,12 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Materialize Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".dropdown-trigger").dropdown();
 
+        })
+    </script>
     <!-- Storage Js -->
     <script src="assets/js/storage.js"></script>
     <!-- Our Own Js  -->
