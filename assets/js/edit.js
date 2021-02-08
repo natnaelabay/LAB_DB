@@ -65,13 +65,23 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        /* 
-        Instruction set to handle Update
 
-        1. Declare the transaction and object store objects 
-        2. Use the id on put method of index db
-        
-        */
+
+
+        const updateTask = DB.transaction(["tasks"], "readwrite")
+
+        const taskObjectStore = updateTask.objectStore("tasks")
+        const request = taskObjectStore.put( {
+            id,
+            taskname: taskInput.value,
+            // added_at: new Date()
+        }) 
+        request.onsuccess = (e) => {
+            console.log("successfully updated");
+        }
+        request.error = (e) => {
+            console.log("something has gone wrong")
+        }
 
         history.back();
     }

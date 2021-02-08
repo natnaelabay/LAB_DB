@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let taskDB = indexedDB.open("tasks", 1)
     asc.addEventListener("click", sortAscending)
     dsc.addEventListener("click", sortDescending)
-    let sortOrder = "dsc"
+    let sortOrder = "Asc"
     taskDB.onsuccess = function (e) {
         console.log("it was a success !!!");
         DB = taskDB.result
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let objectStore = DB.transaction('tasks').objectStore('tasks');
         if (sortOrder == "Asc") {
             console.log("Asc");
-            objectStore.openCursor().onsuccess = function (e) {
+            objectStore.openCursor(null, "prev").onsuccess = function (e) {
                 // assign the current cursor
                 let cursor = e.target.result;
                 if (cursor) {
@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     link.innerHTML = `
                              <i class="fa fa-remove"></i>
                             &nbsp;
-                            <a href="/Lesson 04 [Lab 06]/Finished/edit.html?id=${cursor.value.id}"><i class="fa fa-edit"></i> </a>
+                            <a href="./edit.html?id=${cursor.value.id}"><i class="fa fa-edit"></i> </a>
                             `;
                     // Append link to li
                     li.appendChild(link);
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             }
         } else {
-            objectStore.openCursor(null, "prev").onsuccess = function (e) {
+            objectStore.openCursor().onsuccess = function (e) {
                 // assign the current cursor
                 let cursor = e.target.result;
                 if (cursor) {
